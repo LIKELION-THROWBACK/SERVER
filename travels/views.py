@@ -5,8 +5,11 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework.filters import SearchFilter
 
+from datetime import date
 from .models import Travel
 from .serializers import TravelDetailSerializer, TravelListSerializer
+
+from django.db.models import F, Count
     
 class TravelViewSet(ModelViewSet):
     queryset = Travel.objects.all()
@@ -26,7 +29,10 @@ class TravelViewSet(ModelViewSet):
         return Response(serializer.data)
     
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset()).order_by('-id')
+        queryset = self.filter_queryset(self.get_queryset()).annotate(
+            members_count=Count('members')).filter(
+            max_participation__gt=F('members_count')).filter(
+            deadline__gte=str(date.today()))
 
         serializer = TravelListSerializer(queryset, many=True)
         return Response(serializer.data)

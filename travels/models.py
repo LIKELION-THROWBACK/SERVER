@@ -9,7 +9,7 @@ class Travel(models.Model):
     deadline = models.DateField(null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
-    members = models.ManyToManyField(User, related_name="member")
+    members = models.ManyToManyField(User, related_name="members")
     max_participation = models.IntegerField(null=True, blank=True)
     host = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'host')
     description = models.TextField(blank=True)
@@ -17,3 +17,6 @@ class Travel(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_current_member(self):
+        return self.members.count()

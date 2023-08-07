@@ -15,7 +15,7 @@ class TravelListSerializer(ModelSerializer):
         fields = ['name', 'image', 'start_date', 'end_date', 'host', 'current_member', 'max_participation']
 
     def get_current_member(request, obj):
-        return obj.members.all().count()
+        return obj.get_current_member()
 
 
 class TravelDetailSerializer(ModelSerializer):
