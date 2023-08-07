@@ -14,4 +14,7 @@ class Travel(models.Model):
     host_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'host')
     description = models.TextField(blank=True)
     price = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
     
