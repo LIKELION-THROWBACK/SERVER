@@ -1,7 +1,10 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
-from .views import TravelListView, TravelDetailView
+from .views import TravelViewSet
+
+router = DefaultRouter()
+router.register('', TravelViewSet)
 urlpatterns = [
-    path('list/', TravelListView.as_view()),
-    path('detail/<str:travel_name>', TravelDetailView.as_view()),
+    path('', include(router.urls)),
 ]
