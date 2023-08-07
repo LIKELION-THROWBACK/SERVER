@@ -6,11 +6,11 @@ from rest_framework.permissions import AllowAny
 from rest_framework.filters import SearchFilter
 
 from .models import Travel
-from .serializers import TravelSerializer
+from .serializers import TravelDetailSerializer, TravelListSerializer
     
 class TravelViewSet(ModelViewSet):
     queryset = Travel.objects.all()
-    serializer_class = TravelSerializer
+    serializer_class = TravelDetailSerializer
     permission_classes = [AllowAny]
     lookup_field = 'name'
     filter_backends = [SearchFilter]
@@ -28,5 +28,5 @@ class TravelViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset()).order_by('-id')
 
-        serializer = self.get_serializer(queryset, many=True)
+        serializer = TravelListSerializer(queryset, many=True)
         return Response(serializer.data)
