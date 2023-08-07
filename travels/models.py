@@ -9,9 +9,9 @@ class Travel(models.Model):
     deadline = models.DateField(null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
-    participants = models.ManyToManyField(User, related_name="participants")
+    member = models.ManyToManyField(User, related_name="member")
     max_participation = models.IntegerField(null=True, blank=True)
-    host_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'host')
+    host = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'host')
     description = models.TextField(blank=True)
     price = models.IntegerField(null=True, blank=True)
 
