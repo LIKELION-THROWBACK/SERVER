@@ -6,6 +6,7 @@ class Travel(models.Model):
     name = models.CharField(max_length=255, blank=True)
     image = models.ImageField(null=True, blank=True)
     location = models.CharField(max_length=255, blank=True)
+    created_at = models.DateField(auto_now_add=True, null=True, blank=True)
     deadline = models.DateField(null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
@@ -17,6 +18,3 @@ class Travel(models.Model):
 
     def __str__(self):
         return self.name
-    
-    def get_current_member(self):
-        return self.members.count()
