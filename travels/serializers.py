@@ -51,8 +51,7 @@ class TravelDetailSerializer(ModelSerializer):
         return obj.members.count()
     
     def get_host_profile_image(self, obj):
-        print(obj.host.profile_image)
-        print(obj.host.profile_image.url)
-        if obj.host.profile_image:
+        try:
             return obj.host.profile_image.url
-        return None
+        except ValueError:
+            return None
