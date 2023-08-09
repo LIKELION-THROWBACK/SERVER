@@ -4,9 +4,10 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework.filters import SearchFilter
+from rest_framework.decorators import action
 
 from datetime import date
-from .models import Travel
+from .models import Travel, User
 from .serializers import TravelDetailSerializer, TravelListSerializer
 
 from django.db.models import F, Count
@@ -36,3 +37,14 @@ class TravelViewSet(ModelViewSet):
 
         serializer = TravelListSerializer(queryset, many=True)
         return Response(serializer.data)
+    
+    @action(detail=True, methods=['post'])
+    def add_user(self, request, name=None):
+        user_id = request.data.get('id')
+        user = User.objects.get(id=user_id)
+        travel = Travel.objects.get(name=name)
+        if travel.members.count() < travel.max_participation:
+            travel.members.add(user)
+            return Response({'message': f'{user.name}님의 참가 신청이 완료되었습니다.'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': '모집이 완료된 여행입니다.'}, status=status.HTTP_400_BAD_REQUEST)
