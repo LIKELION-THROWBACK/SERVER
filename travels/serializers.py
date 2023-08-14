@@ -44,7 +44,7 @@ class TravelDetailSerializer(ModelSerializer):
         fields = '__all__'
 
     def get_left_day(self, obj):
-        return (obj.deadline - date.today()).days
+        return (obj.start_date - date.today()).days
     
     def get_current_member(self, obj):
         return obj.members.count()
@@ -54,3 +54,8 @@ class TravelDetailSerializer(ModelSerializer):
             return obj.host.profile_image.url
         except ValueError:
             return None
+        
+from rest_framework import serializers
+
+class ImageUploadSerializer(serializers.Serializer):
+    image = serializers.ImageField()

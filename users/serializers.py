@@ -25,3 +25,9 @@ class UserSerializer(ModelSerializer):
 
     def get_my_reviews(self, obj):
         return Review.objects.filter(user=obj).values('title', 'image', 'description', 'created_at')
+    
+
+from rest_framework import serializers
+
+class ImageUploadSerializer(serializers.Serializer):
+    image = serializers.ImageField()
