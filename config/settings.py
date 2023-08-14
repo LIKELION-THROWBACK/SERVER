@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'travels',
     'reviews',
     'rest_framework',
+    'storages',
     'corsheaders',
 ]
 
@@ -135,6 +136,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# AWS S3
+AWS_ACCESS_KEY_ID = 'AKIA6BTTBQPRVQ4IM65J'
+AWS_STORAGE_BUCKET_NAME = 'likeliionthrowback'
+AWS_S3_CUSTOM_DOMAIN = 'likeliionthrowback.s3.amazonaws.com' 
+AWS_DEFAULT_ACL = 'public-read'  # or use 'private' based on your need
+AWS_QUERYSTRING_AUTH = False
+
+AWS_STATIC_LOCATION = 'static'
+STATIC_URL = "https://likeliionthrowback.s3.ap-northeast-2.amazonaws.com/%ED%85%8C%EC%8A%A4%ED%8A%B8+%EC%82%AC%EC%A7%84/" 
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_MEDIA_LOCATION = 'media'
+MEDIA_URL = "https://likeliionthrowback.s3.ap-northeast-2.amazonaws.com/Media/" 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 CORS_ALLOWED_ORIGINS = [
     'http://localhosst:5173',
 ]
