@@ -21,3 +21,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = ('id', 'travel', 'user', 'title', 'image', 'description', 'created_at')
 
+from rest_framework import serializers
+
+class ImageUploadSerializer(serializers.Serializer):
+    image = serializers.ImageField()
