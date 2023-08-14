@@ -46,9 +46,11 @@ INSTALLED_APPS = [
     'reviews',
     'rest_framework',
     'storages',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -148,4 +150,6 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_MEDIA_LOCATION = 'media'
 MEDIA_URL = "https://likeliionthrowback.s3.ap-northeast-2.amazonaws.com/Media/" 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
+CORS_ALLOWED_ORIGINS = [
+    'http://localhosst:5173',
+]

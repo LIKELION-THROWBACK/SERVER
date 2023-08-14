@@ -7,7 +7,6 @@ class Travel(models.Model):
     image = models.ImageField(null=True, blank=True)
     location = models.CharField(max_length=255, blank=True)
     created_at = models.DateField(auto_now_add=True, null=True, blank=True)
-    deadline = models.DateField(null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     members = models.ManyToManyField(User, related_name="members")
