@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'reviews',
     'rest_framework',
     'storages',
+    'storages',
     'corsheaders',
 ]
 
@@ -151,8 +152,6 @@ AWS_MEDIA_LOCATION = 'media'
 MEDIA_URL = "https://likeliionthrowback.s3.ap-northeast-2.amazonaws.com/Media/" 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# Cors
 CORS_ALLOWED_ORIGINS = [
     'http://localhosst:5173',
 ]
-
