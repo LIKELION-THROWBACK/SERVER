@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'reviews',
     'rest_framework',
     'storages',
+    'storages',
     'corsheaders',
 ]
 
