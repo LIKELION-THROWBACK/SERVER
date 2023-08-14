@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
@@ -32,7 +33,7 @@ class TravelViewSet(ModelViewSet):
         queryset = self.filter_queryset(self.get_queryset()).annotate(
             members_count=Count('members')).filter(
             max_participation__gt=F('members_count')).filter(
-            start_date__gt=str(date.today()))
+            deadline__gte=str(date.today()))
 
         serializer = TravelListSerializer(queryset, many=True)
         return Response(serializer.data)
@@ -47,21 +48,3 @@ class TravelViewSet(ModelViewSet):
             return Response({'message': f'{user.name}님의 참가 신청이 완료되었습니다.'}, status=status.HTTP_200_OK)
         else:
             return Response({'message': '모집이 완료된 여행입니다.'}, status=status.HTTP_400_BAD_REQUEST)
-        
-
-from rest_framework import status, viewsets
-from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework.response import Response
-from .serializers import ImageUploadSerializer
-
-class ImageUploadViewSet(viewsets.ModelViewSet):
-    serializer_class = ImageUploadSerializer
-    parser_classes = (MultiPartParser, FormParser)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
