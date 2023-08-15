@@ -33,7 +33,7 @@ class TravelViewSet(ModelViewSet):
         queryset = self.filter_queryset(self.get_queryset()).annotate(
             members_count=Count('members')).filter(
             max_participation__gt=F('members_count')).filter(
-            deadline__gte=str(date.today()))
+            start_date__gt=str(date.today()))
 
         serializer = TravelListSerializer(queryset, many=True)
         return Response(serializer.data)
