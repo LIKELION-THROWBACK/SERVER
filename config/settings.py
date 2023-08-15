@@ -184,7 +184,7 @@ MEDIA_URL = "https://likeliionthrowback.s3.ap-northeast-2.amazonaws.com/Media/"
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhosst:5173',
+    'http://localhost:5173',
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
