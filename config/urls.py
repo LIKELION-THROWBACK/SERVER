@@ -24,8 +24,8 @@ urlpatterns = [
     path('api/travel/', include('travels.urls')),
     path('api/user/', include('users.urls')),
     path('api/review/', include('reviews.urls')),
-    path('api/home/', include('homes.urls')),
-    path('api/nowadays/', include('nowadays.urls')),
+    # path('api/home/', include('homes.urls')),
+    # path('api/nowadays/', include('nowadays.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
