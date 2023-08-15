@@ -67,10 +67,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', 
-    # 'django.middleware.security.SecurityMiddleware', #이거랑
+    'django.middleware.security.SecurityMiddleware', #이거랑
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware', #이거랑
+    'django.middleware.csrf.CsrfViewMiddleware', #이거랑
     'django.contrib.auth.middleware.AuthenticationMiddleware', #이거
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -189,10 +189,10 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-import socket
-def get_ipaddress():
-    host_name = socket.gethostname()
-    ip_address = socket.gethostbyname(host_name)
-    return "https://"+ip_address
+# import socket
+# def get_ipaddress():
+#     host_name = socket.gethostname()
+#     ip_address = socket.gethostbyname(host_name)
+#     return "https://"+ip_address
 
-CSRF_TRUSTED_ORIGINS = [get_ipaddress()]
+CSRF_TRUSTED_ORIGINS = ["https://port-0-throwback-eu1k2lllcfh9do.sel3.cloudtype.app/"]
