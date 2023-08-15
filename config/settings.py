@@ -71,7 +71,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware', #이거랑
-    # 'django.contrib.auth.middleware.AuthenticationMiddleware', #이거
+    'django.contrib.auth.middleware.AuthenticationMiddleware', #이거
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
