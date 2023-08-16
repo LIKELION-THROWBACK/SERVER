@@ -101,9 +101,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
+# DATABASES = { # RDS연동 후에 추가
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
+#         'ENGINE': 'django.db.backends.mysql', # mySQL사용
 # 		'NAME': get_env_variable('DATABASE'),
 #         'USER': get_env_variable('DB_USER'),
 #         'PASSWORD': get_env_variable('DB_PASSWORD'),
