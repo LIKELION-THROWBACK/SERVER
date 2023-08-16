@@ -195,4 +195,4 @@ CORS_ALLOW_CREDENTIALS = True
 #     ip_address = socket.gethostbyname(host_name)
 #     return "https://"+ip_address
 
-CSRF_TRUSTED_ORIGINS = ["https://port-0-throwback-eu1k2lllcfh9do.sel3.cloudtype.app/"]
+CSRF_TRUSTED_ORIGINS = ["https://port-0-throwback-eu1k2lllcfh9do.sel3.cloudtype.app"]
