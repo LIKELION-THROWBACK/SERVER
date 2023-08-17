@@ -39,10 +39,10 @@ class TravelViewSet(ModelViewSet):
         return Response(serializer.data)
     
     @action(detail=True, methods=['post'])
-    def add_user(self, request, name=None):
+    def add_user(self, request, id=None):
         user_id = request.data.get('id')
         user = User.objects.get(id=user_id)
-        travel = Travel.objects.get(name=name)
+        travel = Travel.objects.get(id=id)
         if travel.members.count() < travel.max_participation:
             travel.members.add(user)
             return Response({'message': f'{user.name}님의 참가 신청이 완료되었습니다.'}, status=status.HTTP_200_OK)
