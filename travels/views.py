@@ -16,13 +16,13 @@ class TravelViewSet(ModelViewSet):
     queryset = Travel.objects.all()
     serializer_class = TravelDetailSerializer
     permission_classes = [AllowAny]
-    lookup_field = 'name'
+    lookup_field = 'id'
     filter_backends = [SearchFilter]
     search_fields = ['name']
 
     def retrieve(self, request, *args, **kwargs):
         try:
-            instance = Travel.objects.get(name = kwargs['name'])
+            instance = Travel.objects.get(id = kwargs['id'])
         except Travel.DoesNotExist:
             return Response({'message': '해당 여행은 존재하지 않습니다.'}, status=status.HTTP_404_NOT_FOUND)
         
@@ -33,7 +33,7 @@ class TravelViewSet(ModelViewSet):
         queryset = self.filter_queryset(self.get_queryset()).annotate(
             members_count=Count('members')).filter(
             max_participation__gt=F('members_count')).filter(
-            start_date__gt=str(date.today()))
+            start_date__gt=str(date.today())).order_by('-id')
 
         serializer = TravelListSerializer(queryset, many=True)
         return Response(serializer.data)
