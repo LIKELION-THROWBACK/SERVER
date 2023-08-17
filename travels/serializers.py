@@ -14,7 +14,7 @@ class TravelListSerializer(ModelSerializer):
     current_member = serializers.SerializerMethodField()
     class Meta:
         model = Travel
-        fields = ['name', 'image', 'start_date', 'end_date', 'host', 'host_profile_image', 'current_member', 'max_participation']
+        fields = ['id', 'name', 'image', 'start_date', 'end_date', 'host', 'host_profile_image', 'current_member', 'max_participation']
 
     def get_current_member(self, obj):
         return obj.members.count()
