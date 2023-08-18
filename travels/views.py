@@ -43,8 +43,12 @@ class TravelViewSet(ModelViewSet):
         user_id = request.data.get('id')
         user = User.objects.get(id=user_id)
         travel = Travel.objects.get(id=id)
-        if travel.members.count() < travel.max_participation:
-            travel.members.add(user)
-            return Response({'message': f'{user.name}님의 참가 신청이 완료되었습니다.'}, status=status.HTTP_200_OK)
+
+        if user in travel.members.all():
+            return Response({'message': '이미 참가 신청한 여행입니다.'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({'message': '모집이 완료된 여행입니다.'}, status=status.HTTP_400_BAD_REQUEST)
+            if travel.members.count() < travel.max_participation:
+                travel.members.add(user)
+                return Response({'message': f'{user.name}님의 참가 신청이 완료되었습니다.'}, status=status.HTTP_200_OK)
+            else:
+                return Response({'message': '모집이 완료된 여행입니다.'}, status=status.HTTP_400_BAD_REQUEST)
